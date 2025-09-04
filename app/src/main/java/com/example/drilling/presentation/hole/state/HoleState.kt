@@ -30,6 +30,6 @@ sealed class HoleIntent {
     data class EditHole(val hole: GeologicalHole) : HoleIntent()
     data class ViewHole(val hole: GeologicalHole) : HoleIntent()
     object AddHole : HoleIntent()
-    object DeleteHoles : HoleIntent()
+    object DeleteAllHoles : HoleIntent()
     data class CopyHoleInfo(val hole: GeologicalHole) : HoleIntent()
 }
