@@ -6,10 +6,10 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 /**
- * Entity класс для таблицы геологических интервалов в базе данных
+ * Entity класс для таблицы рейсов в базе данных
  */
 @Entity(
-    tableName = "geological_intervals",
+    tableName = "trips",
     foreignKeys = [
         ForeignKey(
             entity = BoreholeEntity::class,
@@ -20,12 +20,11 @@ import androidx.room.PrimaryKey
     ],
     indices = [Index("boreholeId")]
 )
-class GeologicalIntervalEntity(
+data class TripEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val boreholeId: Long,
     val startInterval: Double,
     val endInterval: Double,
-    val lithology: String,
-    val stratigraphy: String
+    val coreLength: Double
 )
