@@ -9,5 +9,5 @@ interface BoreholeRepository {
     suspend fun insertBorehole(borehole: Borehole): Long
     suspend fun updateBorehole(borehole: Borehole)
     suspend fun deleteBorehole(id: Long)
-    suspend fun getBoreholesByDrillRing(drillRigNumber: String): List<Borehole>
+    suspend fun getBoreholesByDrillRing(drillRigNumber: Int): List<Borehole>
 }
