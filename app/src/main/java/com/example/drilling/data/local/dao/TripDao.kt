@@ -12,7 +12,7 @@ import com.example.drillingapp.data.local.model.TripInterval
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface RunDao {
+interface TripDao {
     @Query("SELECT * FROM trips WHERE boreholeId = :boreholeId ORDER BY startInterval ASC")
     fun getTripsByBoreholeId(boreholeId: Long): Flow<List<TripEntity>>
 
