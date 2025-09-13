@@ -16,7 +16,7 @@ data class Borehole(
     val id: Long = 0,
     val name: String,
     val isClosed: Boolean = false,
-    val drillRigNumber: String,
+    val drillRigNumber: Int,
     val totalDepth: Double = 0.0, // Вычисляется на основе рейсов
     val closureDepth: Double? = null, // Глубина закрытия, если скважина закрыта
     val columnSet: Double? = null, //Колонковый нобор
@@ -29,7 +29,7 @@ data class Borehole(
      * Проверяет валидность данных скважины
      */
     fun validate(): Boolean {
-        return name.isNotBlank() && drillRigNumber.isDigitsOnly()
+        return name.isNotBlank() && drillRigNumber > 0
     }
 
     /**
