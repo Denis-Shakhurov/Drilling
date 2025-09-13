@@ -17,7 +17,7 @@ import com.example.drilling.data.local.entity.TripEntity
         TripEntity::class,
         GeologicalIntervalEntity::class
     ],
-    version = 3,
+    version = 1,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
