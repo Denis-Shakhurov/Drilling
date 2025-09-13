@@ -1,25 +1,45 @@
 package com.example.drilling.data.local
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.drilling.data.local.dao.GeologicalHoleDao
+import com.example.drilling.data.local.dao.BoreholeDao
 import com.example.drilling.data.local.dao.GeologicalIntervalDao
-import com.example.drilling.data.local.dao.RunDao
-import com.example.drilling.data.local.entity.GeologicalHoleEntity
+import com.example.drilling.data.local.dao.TripDao
+import com.example.drilling.data.local.entity.BoreholeEntity
 import com.example.drilling.data.local.entity.GeologicalIntervalEntity
-import com.example.drilling.data.local.entity.RunEntity
+import com.example.drilling.data.local.entity.TripEntity
 
 @Database(
     entities = [
-        GeologicalHoleEntity::class,
-        GeologicalIntervalEntity::class,
-        RunEntity::class
-    ] ,
-    version = 1,
+        BoreholeEntity::class,
+        TripEntity::class,
+        GeologicalIntervalEntity::class
+    ],
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun geologicalHoleDao() : GeologicalHoleDao
-    abstract fun runDao() : RunDao
-    abstract fun geologicalIntervalDao() : GeologicalIntervalDao
+    abstract fun boreholeDao(): BoreholeDao
+    abstract fun tripDao(): TripDao
+    abstract fun geologicalIntervalDao(): GeologicalIntervalDao
+
+    companion object {
+        @Volatile
+        private var Instance: AppDatabase? = null
+
+        fun getDatabase(context: Context): AppDatabase {
+            return Instance ?: synchronized(this) {
+                Room.databaseBuilder(
+                    context,
+                    AppDatabase::class.java,
+                    "geology_database"
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
+                    .also { Instance = it }
+            }
+        }
+    }
 }
