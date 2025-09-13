@@ -1,6 +1,7 @@
 package com.example.drilling.domain.model
 
 import androidx.core.text.isDigitsOnly
+import java.time.LocalDateTime
 
 /**
  * Domain модель геологической скважины
@@ -21,7 +22,8 @@ data class Borehole(
     val columnSet: Double? = null, //Колонковый нобор
     val deathMeasurement: Double? = null, //Мертвый замер, есди скважина закрыта
     val workingMeasurement: Double? = null, //Рабочий замер, если скважина закрыта
-    val countHQ: Int? = null //Количество буровых штанг, считается после закрытия скважины
+    val countHQ: Int? = null, //Количество буровых штанг, считается после закрытия скважины
+    val createdAt: LocalDateTime = LocalDateTime.now()
 ) {
     /**
      * Проверяет валидность данных скважины
